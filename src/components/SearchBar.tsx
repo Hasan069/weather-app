@@ -1,15 +1,17 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
-import { FaSearchLocation } from "react-icons/fa";
-
+import { TbCloudSearch } from "react-icons/tb";
 
 const SearchBar = () => {
   return (
-    <div>
-      <div className="flex items-center gap-4 h-32 ">
-        
-        <Input type="city" placeholder="Enter the name of your city" className="h-12 text-lg"/>
-        <FaSearchLocation className="h-10 w-10"/>
+    <div >
+      <div className="flex items-center gap-4 -translate-y-10">
+        <Input
+          type="city"
+          placeholder="Search City"
+          className="h-12 text-lg rounded-2xl"
+        />
+        <TbCloudSearch className="h-10 w-10 cursor-pointer" />
       </div>
     </div>
   );
