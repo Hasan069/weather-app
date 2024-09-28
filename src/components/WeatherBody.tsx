@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cloud from "@/assets/cloud.png";
 import { IoWaterOutline } from "react-icons/io5";
 
 const WeatherBody = () => {
+  const [weatherData, setWeatherData] = useState(null);
+  const API_KEY = "";
+  const city = "";
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        );
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.log("error fetcing weather data", error);
+      }
+    };
+    fetchWeatherData();
+  }, []);
+
   return (
     <div className="-translate-y-7">
       <div className="container w-[50vw] md:min-w-[450px] mx-auto flex justify-center items-center">
