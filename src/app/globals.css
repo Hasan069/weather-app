@@ -8,3 +8,36 @@ body {
   font-family: "Roboto Mono", system-ui;
   font-style: normal;
 }
+
+::-webkit-scrollbar {
+  background: #6b6767;
+  border-radius: 50px;
+  height: 10px;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar-track {
+  background: #888;
+  border-radius: 50px;
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 50px;
+  
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 768px){
+  ::-webkit-scrollbar {
+    visibility: hidden;
+  }
+
+  ::-webkit-scrollbar-track {
+    visibility: hidden;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+}
