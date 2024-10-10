@@ -12,6 +12,7 @@ import { MdOutlineVisibility } from "react-icons/md";
 import { FaCloud } from "react-icons/fa";
 
 const WeatherBody = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [weatherData, setWeatherData] = useState<any>("");
   const [sunrise, setSunrise] = useState<string | null>(null);
   const [sunset, setSunset] = useState<string | null>(null);
