@@ -11,13 +11,16 @@ import { FaCloudRain } from "react-icons/fa";
 import { MdOutlineVisibility } from "react-icons/md";
 import { FaCloud } from "react-icons/fa";
 
-const WeatherBody = () => {
+interface WeatherBodyProps {
+  city: string;
+}
+
+const WeatherBody: React.FC<WeatherBodyProps> = ({ city }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [weatherData, setWeatherData] = useState<any>("");
   const [sunrise, setSunrise] = useState<string | null>(null);
   const [sunset, setSunset] = useState<string | null>(null);
   const API_KEY = "967f5832c40b86b12c421754abf2608a";
-  const city = "Dhaka";
 
   const convertUnixToTime = (timestamp: number): string => {
     const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
@@ -32,25 +35,24 @@ const WeatherBody = () => {
         );
         const data = await response.json();
         setWeatherData(data);
-
         setSunrise(convertUnixToTime(data.sys.sunrise));
         setSunset(convertUnixToTime(data.sys.sunset));
+        console.log("Data is fetched")
       } catch (error) {
         console.log("error fetcing weather data", error);
       }
     };
     fetchWeatherData();
-  }, []);
+  }, [city]);
 
   return (
-    <div className="-translate-y-7">
+    <div className="items-center mt-32">
       {weatherData ? (
         <div>
           <div className="container w-[50vw] md:min-w-[450px] mx-auto flex justify-center items-center">
             <Image src={cloud} alt="cloud" className="h-40 w-52"></Image>
           </div>
           <div className="text-center ">
-            
             <p className="font-bold text-4xl mt-4">
               {weatherData.main?.temp}C° {/* this line shows temparature*/}
             </p>
@@ -118,13 +120,12 @@ const WeatherBody = () => {
             </div>
 
             <div className="flex p-3 h-24 w-52  border border-slate-700 rounded-xl gap-2">
-              <FaCloud  className="h-16 w-16" />
+              <FaCloud className="h-16 w-16" />
               <div>
                 <span>cloud</span> {/* this line shows cloud*/}
-                <p >{weatherData.clouds?.all}</p>
+                <p>{weatherData.clouds?.all}</p>
               </div>
             </div>
-
 
             <div className="flex p-3 h-24 w-52  border border-slate-700 rounded-xl gap-2">
               <MdOutlineVisibility className="h-16 w-16" />
